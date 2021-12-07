@@ -1,0 +1,14 @@
+{
+  "name": "graphql-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "tuanh",
+  "license": "MIT",
+  "dependencies": {
+    "apollo-server-express": "^3.5.0",
+    "express": "^4.17.1",
+    "graphql": "^16.0.1",
+    "mongoose": "^6.0.15",
+    "nodemon": "^2.0.15"
+  }
+}

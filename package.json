@@ -1,0 +1,13 @@
+{
+  "name": "graphql-react",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/anhtudo97/graphql-react.git",
+  "author": "Zhao Yang <anhtudo97@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@commitlint/cli": "^15.0.0",
+    "@commitlint/config-conventional": "^15.0.0",
+    "husky": "^7.0.4"
+  }
+}
