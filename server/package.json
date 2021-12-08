@@ -1,7 +1,7 @@
 {
   "name": "graphql-server",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "app.js",
   "author": "tuanh",
   "license": "MIT",
   "dependencies": {
@@ -10,5 +10,8 @@
     "graphql": "^16.0.1",
     "mongoose": "^6.0.15",
     "nodemon": "^2.0.15"
+  },
+  "scripts": {
+    "server": "nodemon app"
   }
 }
