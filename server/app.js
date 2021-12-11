@@ -1,5 +1,8 @@
 const express = require("express");
 const { ApolloServer } = require("apollo-server-express");
+const {
+  ApolloServerPluginLandingPageGraphQLPlayground,
+} = require("apollo-server-core");
 
 // Load schema and resolvers
 const typeDefs = require("./schema/schema");
@@ -7,7 +10,18 @@ const resolvers = require("./resolver/resolver");
 
 const main = async () => {
   const app = express();
-  const server = new ApolloServer({ typeDefs, resolvers });
+  const server = new ApolloServer({
+    typeDefs,
+    resolvers,
+    plugins: [
+      ApolloServerPluginLandingPageGraphQLPlayground({
+        settings: {
+          // setting for access cookie
+          ["request.credentials"]: "include",
+        },
+      }),
+    ],
+  });
 
   await server.start();
 
