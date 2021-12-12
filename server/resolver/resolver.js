@@ -13,11 +13,17 @@ const resolvers = {
 
   Book: {
     author: ({ authorId }, args) =>
-      authors.find((author) => author.id === authorId),
+      authors.find((author) => author.id.toString() === authorId),
   },
 
   Author: {
     books: ({ id }, args) => books.filter((book) => book.authorId === id),
+  },
+
+  // MUTATION
+  Mutation: {
+    createAuthor: (parent, args) => args,
+    createBook: (parent, args) => args,
   },
 };
 
