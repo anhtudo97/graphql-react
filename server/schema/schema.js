@@ -5,12 +5,14 @@ const typeDefs = gql`
     id: ID
     name: String
     genre: String
+    author: Author
   }
 
   type Author {
     id: ID!
     name: String
     age: Int
+    books: [Book]
   }
 
   # ROOT TYPE
