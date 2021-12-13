@@ -7,9 +7,28 @@ const {
 // Load schema and resolvers
 const typeDefs = require("./schema/schema");
 const resolvers = require("./resolver/resolver");
+const { connect } = require("mongoose");
 
 const main = async () => {
   const app = express();
+
+  //MONGODB_URI=mongodb://root:123@localhost:27017/
+  const connectDB = async () => {
+    try {
+      await connect("mongodb://root:123@localhost:27017/", {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+      });
+
+      console.log("MongoDB connected");
+    } catch (error) {
+      console.log(error.message);
+      process.exit(1);
+    }
+  };
+
+  connectDB();
+
   const server = new ApolloServer({
     typeDefs,
     resolvers,
