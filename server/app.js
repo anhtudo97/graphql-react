@@ -12,6 +12,9 @@ const { connect } = require("mongoose");
 const main = async () => {
   const app = express();
 
+  // Load db method
+  const mongoDataMethods = require("./data/db");
+
   //MONGODB_URI=mongodb://root:123@localhost:27017/
   const connectDB = async () => {
     try {
@@ -40,6 +43,7 @@ const main = async () => {
         },
       }),
     ],
+    context: () => ({ mongoDataMethods }),
   });
 
   await server.start();
