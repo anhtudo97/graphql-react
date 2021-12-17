@@ -22,11 +22,10 @@ const typeDefs = gql`
     authors: [Author]
     author(id: ID!): Author
   }
-
-  # Mutation
+  
   type Mutation {
     createAuthor(name: String, age: Int): Author
-    createBook(id: ID!, name: String, genre: String, authorId: ID!): Book
+    createBook(name: String, genre: String, authorId: ID!): Book
   }
 `;
 
