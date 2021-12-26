@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
@@ -8,8 +7,6 @@ import { getAuthors, getBooks } from '../graphql-client/queries'
 import { addSingleBook } from '../graphql-client/mutations'
 
 const BookForm = () => {
-    const [addBook, dataMutation] = useMutation(addSingleBook)
-
     const [newBook, setNewBook] = useState({
         name: '',
         genre: '',
@@ -18,31 +15,33 @@ const BookForm = () => {
 
     const { name, genre, authorId } = newBook
 
-    const onInputChange = e => {
+    const onInputChange = event => {
         setNewBook({
             ...newBook,
-            [e.target.name]: e.target.value
+            [event.target.name]: event.target.value
         })
     }
 
-    const onSubmit = e => {
-        e.preventDefault()
-
+    const onSubmit = event => {
+        event.preventDefault()
+        console.log('test deploy')
         addBook({
-            variables: {
-                name, genre, authorId
-            },
+            variables: { name, genre, authorId },
             refetchQueries: [{ query: getBooks }]
         })
 
         setNewBook({ name: '', genre: '', authorId: '' })
     }
 
-    const { loading, error, data } = useQuery(getAuthors)
+    // GraphQL operations
+    const { loading, data } = useQuery(getAuthors)
+
+    const [addBook] = useMutation(addSingleBook)
 
     return (
         <Form onSubmit={onSubmit}>
             <Form.Group>
+                <Form.Label>Book name</Form.Label>
                 <Form.Control
                     type='text'
                     placeholder='Book name'
@@ -53,6 +52,7 @@ const BookForm = () => {
                 />
             </Form.Group>
             <Form.Group>
+                <Form.Label>Book genre</Form.Label>
                 <Form.Control
                     type='text'
                     placeholder='Book genre'
@@ -63,6 +63,7 @@ const BookForm = () => {
                 />
             </Form.Group>
             <Form.Group>
+                <Form.Label>Authors selection</Form.Label>
                 {loading ? (
                     <p>Loading authors...</p>
                 ) : (
@@ -84,11 +85,11 @@ const BookForm = () => {
                     </Form.Control>
                 )}
             </Form.Group>
-            <Button className='float-right' variant='info' type='submit'>
+            <Button className='float-right mt-4' variant='info' type='submit'>
                 Add Book
             </Button>
         </Form>
     )
 }
 
-export default BookForm;
+export default BookForm
