@@ -17,20 +17,24 @@ const BookList = () => {
 
     return (
         <Row>
-            <Col xs={8}>
+            <Col>
+                <Row>
+                    {data.books.map(book => (
+                        <Col xs={6}>
 
-                {data.books.map(book => (
-                    <Card
-                        border='info'
-                        text='info'
-                        className='text-center shadow mb-3'
-                        key={book.id}
-                        onClick={setBookSelected.bind(this, book.id)}
-                        style={{ cursor: 'pointer' }}
-                    >
-                        <Card.Body>{book.name}</Card.Body>
-                    </Card>
-                ))}
+                            <Card
+                                border='info'
+                                text='info'
+                                className='text-center shadow mb-3'
+                                key={book.id}
+                                onClick={setBookSelected.bind(this, book.id)}
+                                style={{ cursor: 'pointer' }}
+                            >
+                                <Card.Body>{book.name}</Card.Body>
+                            </Card>
+                        </Col>
+                    ))}
+                </Row>
             </Col>
             <Col>
                 <BookDetails bookId={bookSelected} />
